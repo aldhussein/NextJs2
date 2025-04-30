@@ -5,5 +5,5 @@ const nextConfig: NextConfig = {
    typescript: {
     ignoreBuildErrors: true, 
 }
-
+}
 module.export default nextConfig;
