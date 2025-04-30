@@ -1,18 +1,12 @@
-import { NextRequest, NextResponse } from "next/server";
-import type { NextRequest as AppNextRequest } from "next/server"; // optional clarity
-import connectToTheDatabase from "@/app/lib/db";
-import TodoModel from "@/app/models/todoModel";
+import { NextRequest, NextResponse } from 'next/server';
+import type { NextApiRequest } from 'next';
+import type { RouteHandlerContext } from 'next'; // ✅ ADD THIS LINE
 
-// Type for context from Next.js App Router
-type RouteContext = {
-  params: {
-    id: string;
-  };
-};
+import connectToTheDatabase from '@/app/lib/db';
+import TodoModel from '@/app/models/todoModel';
 
-export async function PUT(req: NextRequest, context: RouteContext) {
+export async function PUT(req: NextRequest, context: RouteHandlerContext) {
   await connectToTheDatabase();
-
   const isDone = await req.json();
 
   const updatedTodo = await TodoModel.findByIdAndUpdate(context.params.id, { isDone });
@@ -20,7 +14,7 @@ export async function PUT(req: NextRequest, context: RouteContext) {
   return NextResponse.json(updatedTodo, { status: 201 });
 }
 
-export async function DELETE(req: NextRequest, context: RouteContext) {
+export async function DELETE(req: NextRequest, context: RouteHandlerContext) {
   await connectToTheDatabase();
 
   const deletedTodo = await TodoModel.findByIdAndDelete(context.params.id);
