@@ -6,4 +6,4 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true, 
 }
 }
-module.export default nextConfig;
+export default nextConfig;
