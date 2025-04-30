@@ -1,23 +1,24 @@
 import { NextRequest, NextResponse } from 'next/server';
-import type { NextApiRequest } from 'next';
-import RouteHandlerContext from 'next'; // ✅ ADD THIS LINE
-
 import connectToTheDatabase from '@/app/lib/db';
 import TodoModel from '@/app/models/todoModel';
 
-export async function PUT(req: NextRequest, context: typeof RouteHandlerContext) {
+export async function PUT(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectToTheDatabase();
   const isDone = await req.json();
 
-  const updatedTodo = await TodoModel.findByIdAndUpdate(context.params.id, { isDone });
+  const updatedTodo = await TodoModel.findByIdAndUpdate(params.id, { isDone });
 
   return NextResponse.json(updatedTodo, { status: 201 });
 }
 
-export async function DELETE(req: NextRequest, context: RouteHandlerContext) {
+export async function DELETE(
+  req: NextRequest,
+  { params }: { params: { id: string } }
+) {
   await connectToTheDatabase();
-
-  const deletedTodo = await TodoModel.findByIdAndDelete(context.params.id);
-
+  const deletedTodo = await TodoModel.findByIdAndDelete(params.id);
   return NextResponse.json(deletedTodo, { status: 201 });
 }
