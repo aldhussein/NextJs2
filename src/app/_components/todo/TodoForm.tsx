@@ -45,7 +45,7 @@ const TodoForm = () => {
 
   return (
 
-          <form className='w-full mb-22'
+          <form className='w-full mb-10'
           onSubmit={handleSubmit}>
           <div className="grid w-full items-center gap-4">
             <div className="flex flex-col space-y-1.5">
