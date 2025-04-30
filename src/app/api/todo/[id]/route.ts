@@ -6,7 +6,7 @@ interface Params {
     id: string
 }
 
-export async function PUT(req: NextRequest, {params}: {params: Params}) {
+export async function PUT(req: NextRequest, { params }: { params: { id: string } }) {
 
     await connectToTheDatabase();
 
