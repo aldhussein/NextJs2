@@ -5,7 +5,7 @@ import RouteHandlerContext from 'next'; // ✅ ADD THIS LINE
 import connectToTheDatabase from '@/app/lib/db';
 import TodoModel from '@/app/models/todoModel';
 
-export async function PUT(req: NextRequest, context: RouteHandlerContext) {
+export async function PUT(req: NextRequest, context: typeof RouteHandlerContext) {
   await connectToTheDatabase();
   const isDone = await req.json();
 
