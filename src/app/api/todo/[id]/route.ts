@@ -1,6 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server';
 import type { NextApiRequest } from 'next';
-import type { RouteHandlerContext } from 'next'; // ✅ ADD THIS LINE
+import RouteHandlerContext from 'next'; // ✅ ADD THIS LINE
 
 import connectToTheDatabase from '@/app/lib/db';
 import TodoModel from '@/app/models/todoModel';
